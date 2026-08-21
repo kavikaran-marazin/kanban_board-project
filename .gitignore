@@ -1,0 +1,16 @@
+# Dependencies and package-manager caches
+node_modules/
+
+# Production build output
+dist/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Tooling logs and editor files
+*.log
+.vite/
+.DS_Store
+Thumbs.db
