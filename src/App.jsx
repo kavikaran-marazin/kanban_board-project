@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LoginPage from "./components/LoginPage";
 import TopAppBar from "./components/TopAppBar";
 import BoardHeader from "./components/BoardHeader";
 import KanbanColumn from "./components/KanbanColumn";
@@ -9,12 +10,18 @@ import { currentBoard, columns, navLinks } from "./data/boardData";
 import "./App.css";
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeView, setActiveView] = useState("boards");
   const [toast, setToast] = useState({
     avatar: "https://i.pravatar.cc/64?img=47",
     name: "Sarah",
     message: "moved 'Website Design' to Done",
   });
+
+  const handleLogin = (credentials) => {
+    console.log("Logged in with:", credentials);
+    setIsLoggedIn(true);
+  };
 
   const handleNavigate = (id) => {
     if (id === "dash" || id === "boards") {
@@ -26,6 +33,11 @@ export default function App() {
     ...link,
     active: link.id === activeView,
   }));
+
+  /* ── Show login page when not authenticated ── */
+  if (!isLoggedIn) {
+    return <LoginPage onLogin={handleLogin} />;
+  }
 
   return (
     <div className="app">
