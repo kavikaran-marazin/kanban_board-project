@@ -150,6 +150,14 @@
 
 .login-field__icon {
   flex-shrink: 0;
+  width: 2px;
+  height: 20px;
+  color: var(--color-text-muted);
+  margin-right: 10px;
+}
+
+.login-field__input-wrap > svg {
+  flex-shrink: 0;
   width: 20px;
   height: 20px;
   color: var(--color-text-muted);
@@ -220,7 +228,6 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  user-select: none;
 }
 
 .login-remember__checkbox {

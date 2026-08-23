@@ -1,7 +1,7 @@
 import TaskCard, { TaskCardSkeleton } from "./TaskCard";
 import "./KanbanColumn.css";
 
-export default function KanbanColumn({ column, onAddTask, onTaskClick }) {
+export default function KanbanColumn({ column, onAddTask, onTaskClick, onMoveTask }) {
   const taskCount = column.tasks.length;
 
   return (
@@ -19,7 +19,14 @@ export default function KanbanColumn({ column, onAddTask, onTaskClick }) {
 
       <div className="kanban-column__body">
         {column.tasks.map((task) => (
-          <TaskCard key={task.id} task={task} onClick={onTaskClick} />
+          <div key={task.id} className="kanban-column__task-wrapper">
+            <TaskCard 
+              task={task} 
+              onClick={onTaskClick}
+              columnId={column.id}
+              onMove={onMoveTask ? (toColumnId) => onMoveTask(task.id, column.id, toColumnId) : undefined}
+            />
+          </div>
         ))}
 
         {Array.from({ length: column.loadingPlaceholders || 0 }).map((_, i) => (

@@ -35,6 +35,117 @@
   align-items: flex-start;
 }
 
+/* Task Modal Styles */
+.task-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.task-modal {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.task-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.task-modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.task-modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #999;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-modal-close:hover {
+  color: #333;
+}
+
+.task-modal-content {
+  margin: 20px 0;
+}
+
+.task-modal-content p {
+  margin: 12px 0;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.task-modal-content strong {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.task-modal-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.task-modal-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.task-modal-btn-delete {
+  background: #ff4444;
+  color: white;
+}
+
+.task-modal-btn-delete:hover {
+  background: #dd0000;
+}
+
+.task-modal-btn-close {
+  background: #f0f0f0;
+  color: var(--color-text);
+}
+
+.task-modal-btn-close:hover {
+  background: #e0e0e0;
+}
+
 /* Desktop: let the shell breathe instead of staying phone-width */
 @media (min-width: 900px) {
   .app {

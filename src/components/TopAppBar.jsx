@@ -1,6 +1,6 @@
 import "./TopAppBar.css";
 
-export default function TopAppBar() {
+export default function TopAppBar({ userName, onLogout }) {
   return (
     <header className="top-app-bar">
       <div className="top-app-bar__brand">
@@ -19,6 +19,18 @@ export default function TopAppBar() {
         </svg>
         <h1 className="top-app-bar__title">CollabBoard</h1>
       </div>
+      {userName && (
+        <div className="top-app-bar__user">
+          <span className="top-app-bar__user-name">{userName}</span>
+          <button 
+            className="top-app-bar__logout"
+            onClick={onLogout}
+            type="button"
+          >
+            Logout
+          </button>
+        </div>
+      )}
     </header>
   );
 }

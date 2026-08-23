@@ -25,7 +25,7 @@ function AssigneeStack({ assignee, assignees }) {
   );
 }
 
-export default function TaskCard({ task, onClick }) {
+export default function TaskCard({ task, onClick, onMove, columnId }) {
   const { title, priority, dueDate, commentCount, assignee, assignees, completed, activePresence } = task;
 
   return (
@@ -34,6 +34,12 @@ export default function TaskCard({ task, onClick }) {
       onClick={() => onClick?.(task)}
       role="button"
       tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onClick?.(task);
+        }
+      }}
     >
       {activePresence && (
         <div className="task-card__presence">
@@ -67,6 +73,21 @@ export default function TaskCard({ task, onClick }) {
         </div>
         <AssigneeStack assignee={assignee} assignees={assignees} />
       </div>
+
+      {onMove && (
+        <label className="task-card__move" onClick={(event) => event.stopPropagation()}>
+          <span>Move to</span>
+          <select
+            value={columnId}
+            aria-label={`Move ${title} to another column`}
+            onChange={(event) => onMove(event.target.value)}
+          >
+            <option value="todo">To do</option>
+            <option value="doing">Doing</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+      )}
 
       {priority && <span className={`task-card__accent task-card__accent--${priority}`} />}
     </div>

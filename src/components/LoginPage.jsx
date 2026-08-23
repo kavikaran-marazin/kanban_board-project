@@ -71,7 +71,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /* ── Component ───────────────────────────────────────────── */
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage({ onLogin, onSwitchToRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -251,7 +251,11 @@ export default function LoginPage({ onLogin }) {
         {/* Footer */}
         <p className="login-footer">
           Don&apos;t have an account?{" "}
-          <button type="button" className="login-footer__link">
+          <button 
+            type="button" 
+            className="login-footer__link"
+            onClick={onSwitchToRegister}
+          >
             Register here
           </button>
         </p>
