@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LoginPage from "./components/LoginPage";
 import TopAppBar from "./components/TopAppBar";
 import BoardHeader from "./components/BoardHeader";
 import KanbanColumn from "./components/KanbanColumn";
@@ -10,6 +11,8 @@ import "./App.css";
 import Register from './components/Register';
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activeView, setActiveView] = useState("boards");
   const [activeView, setActiveView] = useState("register");
   
   const [toast, setToast] = useState({
@@ -17,6 +20,11 @@ export default function App() {
     name: "Sarah",
     message: "moved 'Website Design' to Done",
   });
+
+  const handleLogin = (credentials) => {
+    console.log("Logged in with:", credentials);
+    setIsLoggedIn(true);
+  };
 
   const handleNavigate = (id) => {
     if (id === "dash" || id === "boards" || id === "register") {
@@ -28,6 +36,11 @@ export default function App() {
     ...link,
     active: link.id === activeView,
   }));
+
+  /* ── Show login page when not authenticated ── */
+  if (!isLoggedIn) {
+    return <LoginPage onLogin={handleLogin} />;
+  }
 
   return (
     <div className="app">
