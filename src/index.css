@@ -86,3 +86,12 @@ ol {
   padding: 0;
   list-style: none;
 }
+
+
+html.theme-dark, body.theme-dark { background:#0d1020; }
+body.theme-dark { --color-bg-page:#0d1020; --color-bg-main:#111522; --color-bg-card:#171b2a; --color-bg-column:#1b2030; --color-text-heading:#f3f4ff; --color-text-body:#d0d2df; --color-text-muted:#9b9db0; --color-border:#30364b; --color-brand-soft:#302b70; }
+body.theme-dark .login-page { background:radial-gradient(circle at top,#211d48 0%,#0d1020 65%); }
+body.theme-dark .login-card, body.theme-dark .login-field__input-wrap { background:#171b2a; }
+body.theme-dark .landing-page { background:#0d1020; }
+body.theme-dark .landing-preview { background:#171b2a; }
+body.theme-dark .landing-preview__side, body.theme-dark .landing-preview__top { background:#121625; }

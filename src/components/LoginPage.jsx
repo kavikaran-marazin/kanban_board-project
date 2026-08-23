@@ -71,7 +71,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /* ── Component ───────────────────────────────────────────── */
 
-export default function LoginPage({ onLogin }) {
+export default function LoginPage({ onLogin, onRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -142,7 +142,7 @@ export default function LoginPage({ onLogin }) {
                 emailError ? " login-field__input-wrap--error" : ""
               }`}
             >
-              <MailIcon />
+              <span className="login-field__icon"><MailIcon /></span>
               <input
                 id="login-email"
                 className="login-field__input"
@@ -176,7 +176,7 @@ export default function LoginPage({ onLogin }) {
                 passwordError ? " login-field__input-wrap--error" : ""
               }`}
             >
-              <LockIcon />
+              <span className="login-field__icon"><LockIcon /></span>
               <input
                 id="login-password"
                 className="login-field__input"
@@ -251,7 +251,7 @@ export default function LoginPage({ onLogin }) {
         {/* Footer */}
         <p className="login-footer">
           Don&apos;t have an account?{" "}
-          <button type="button" className="login-footer__link">
+          <button type="button" className="login-footer__link" onClick={onRegister}>
             Register here
           </button>
         </p>

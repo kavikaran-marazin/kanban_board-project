@@ -43,3 +43,14 @@ src/
   MERN choice) — swap the static `toast` state in `App.jsx` for socket events.
 - Avatars currently point to `pravatar.cc` placeholder images — swap for real
   user avatar URLs from your API/user model.
+
+
+## Frontend update
+- Added a public landing page shown before authentication.
+- Fixed the oversized login email/password icons.
+- Added functional Settings with Light, Dark and System appearance modes.
+- Added notification preference and account logout controls.
+- Registration now calls the app authentication flow instead of stopping at an alert.
+- Theme and preferences persist with localStorage.
+
+Run with `npm install` and then `npm run dev`.

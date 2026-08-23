@@ -18,13 +18,13 @@
 
 .login-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 630px;
   background: #ffffff;
   border-radius: 20px;
   box-shadow:
     0 4px 40px rgba(53, 37, 205, 0.06),
     0 1px 3px rgba(0, 0, 0, 0.04);
-  padding: 40px 32px 36px;
+  padding: 58px 48px 42px;
   animation: loginCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -149,12 +149,17 @@
 }
 
 .login-field__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   width: 20px;
   height: 20px;
   color: var(--color-text-muted);
   margin-right: 10px;
 }
+
+.login-field__icon svg { width: 20px !important; height: 20px !important; max-width: 20px; max-height: 20px; }
 
 .login-field__input {
   flex: 1;
@@ -419,4 +424,10 @@
 .login-footer__link:hover {
   color: var(--color-brand-light);
   text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .login-page { padding: 14px; align-items: flex-start; }
+  .login-card { max-width: 100%; padding: 34px 20px 30px; margin: 12px 0; border-radius: 16px; }
+  .login-title { font-size: 30px; }
 }
