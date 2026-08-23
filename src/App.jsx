@@ -8,10 +8,13 @@ import Toast from "./components/Toast";
 import Dashboard from "./components/Dashboard";
 import { currentBoard, columns, navLinks } from "./data/boardData";
 import "./App.css";
+import Register from './components/Register';
 
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeView, setActiveView] = useState("boards");
+  const [activeView, setActiveView] = useState("register");
+  
   const [toast, setToast] = useState({
     avatar: "https://i.pravatar.cc/64?img=47",
     name: "Sarah",
@@ -24,7 +27,7 @@ export default function App() {
   };
 
   const handleNavigate = (id) => {
-    if (id === "dash" || id === "boards") {
+    if (id === "dash" || id === "boards" || id === "register") {
       setActiveView(id);
     }
   };
@@ -44,7 +47,9 @@ export default function App() {
       <div className="app__main">
         <TopAppBar />
 
-        {activeView === "dash" ? (
+        {activeView === "register" ? (
+          <Register />
+        ) : activeView === "dash" ? (
           <Dashboard onNavigate={handleNavigate} />
         ) : (
           <main className="board">
@@ -70,7 +75,7 @@ export default function App() {
 
       <BottomNavBar links={navigationLinks} onNavigate={handleNavigate} />
 
-      <Toast toast={toast} onClose={() => setToast(null)} />
+      {toast && <Toast toast={toast} onClose={() => setToast(null)} />}
     </div>
   );
 }
