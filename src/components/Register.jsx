@@ -1,85 +1,107 @@
 import { useState } from 'react';
-import './Register.css';
+import './Register.css'; 
 
-function Register() {
-  const [form, setForm] = useState({
+export default function Register() {
+  // 1. State for all 9 fields
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
+    dob: '',
+    gender: '',
+    role: '',
+    department: '',
+    phone: '+94 ', // Default country code setup
     password: '',
     confirmPassword: ''
   });
-  const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
 
-  const validate = () => {
-    const newErrors = {};
-    if (!form.name.trim()) newErrors.name = 'Name is required';
-    if (!form.email.trim()) newErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = 'Invalid email';
-    if (!form.password) newErrors.password = 'Password is required';
-    else if (form.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
-    if (form.password !== form.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!validate()) return;
-    console.log('Register submit (mock):', form);
-    setSubmitted(true);
-  };
-
+  // 2. Handle input changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  if (submitted) {
-    return (
-      <div className="register-container">
-        <div className="register-card">
-          <h2>Registration successful</h2>
-          <p>Your account has been created (mock). In the real app, you would be redirected to login or dashboard.</p>
-        </div>
-      </div>
-    );
-  }
+  // 3. Handle Form Submit & Validation
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+    
+    // Validation
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match! Please check.");
+      return;
+    }
+
+    // Console-la data theliva log aagum
+    console.log("Ready to send to Backend:", formData);
+    alert("Validation Success! Form Data logged in console.");
+  };
 
   return (
     <div className="register-container">
-      <div className="register-card">
-        <h2>Create your account</h2>
-        <form onSubmit={handleSubmit} noValidate>
+      {/* 9 fields irukkardhala scroll pandra madhiri style add pannirukku */}
+      <div className="register-card" style={{ maxHeight: '85vh', overflowY: 'auto' }}>
+        <h2>Register Account</h2>
+        <form onSubmit={handleSubmit}>
+          
           <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input id="name" name="name" type="text" value={form.name} onChange={handleChange} className={errors.name ? 'error' : ''} />
-            {errors.name && <span className="error-text">{errors.name}</span>}
+            <label>Full Name</label>
+            <input type="text" name="name" onChange={handleChange} required />
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input id="email" name="email" type="email" value={form.email} onChange={handleChange} className={errors.email ? 'error' : ''} />
-            {errors.email && <span className="error-text">{errors.email}</span>}
+            <label>Email Address</label>
+            <input type="email" name="email" onChange={handleChange} required />
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input id="password" name="password" type="password" value={form.password} onChange={handleChange} className={errors.password ? 'error' : ''} />
-            {errors.password && <span className="error-text">{errors.password}</span>}
+            <label>Date of Birth</label>
+            <input type="date" name="dob" onChange={handleChange} required />
           </div>
 
           <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm password</label>
-            <input id="confirmPassword" name="confirmPassword" type="password" value={form.confirmPassword} onChange={handleChange} className={errors.confirmPassword ? 'error' : ''} />
-            {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
+            <label>Gender</label>
+            <select name="gender" onChange={handleChange} required style={{ width: '100%', padding: '8px', borderRadius: '4px' }}>
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+              <option value="prefer_not_to_say">Prefer not to say</option>
+            </select>
           </div>
 
-          <button type="submit" className="register-button">Register</button>
+          <div className="form-group">
+            <label>Job Role</label>
+            <select name="role" onChange={handleChange} required style={{ width: '100%', padding: '8px', borderRadius: '4px' }}>
+              <option value="">Select Role</option>
+              <option value="developer">Developer</option>
+              <option value="designer">Designer</option>
+              <option value="manager">Project Manager</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label>Department</label>
+            <input type="text" name="department" placeholder="e.g., IT, Marketing" onChange={handleChange} required />
+          </div>
+
+          <div className="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+          </div>
+
+          <div className="form-group">
+            <label>Password</label>
+            <input type="password" name="password" onChange={handleChange} required />
+          </div>
+
+          <div className="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="confirmPassword" onChange={handleChange} required />
+          </div>
+
+          <button type="submit" style={{ marginTop: '10px', width: '100%' }}>Sign Up</button>
         </form>
       </div>
     </div>
   );
 }
-
-export default Register;
