@@ -1,0 +1,53 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: var(--color-bg-page);
+  position: relative;
+  overflow: hidden;
+}
+
+.app__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.board {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-main);
+  padding-bottom: 64px; /* clears the fixed bottom nav */
+}
+
+.board__columns {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 0 24px 24px;
+  align-items: flex-start;
+}
+
+/* Desktop: let the shell breathe instead of staying phone-width */
+@media (min-width: 900px) {
+  .app {
+    max-width: none;
+  }
+
+  .board__columns {
+    padding: 0 32px 32px;
+  }
+}
+
+.app-placeholder{max-width:1100px;margin:0 auto;padding:48px 24px;min-height:70vh}
+.app-placeholder h2{font-size:32px;margin:0 0 10px;color:#17152a}
+.app-placeholder p{color:#68657a;margin-bottom:24px}
+.app-placeholder button{border:0;border-radius:10px;background:#3525cd;color:white;padding:12px 18px;font-weight:700;cursor:pointer}
+@media (max-width:600px){.app-placeholder{padding:32px 16px}.app-placeholder h2{font-size:26px}}
