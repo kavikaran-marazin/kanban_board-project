@@ -1,0 +1,223 @@
+.task-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.task-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalScale 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-dark .task-modal {
+  background: #1e1e2d;
+  color: #f1f5f9;
+  border: 1px solid #2d2d3f;
+}
+
+.task-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.theme-dark .task-modal__header {
+  border-bottom-color: #2d2d3f;
+}
+
+.task-modal__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+  color: inherit;
+}
+
+.task-modal__close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  color: #64748b;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.task-modal__close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.theme-dark .task-modal__close:hover {
+  background: #2d2d3f;
+  color: #f8fafc;
+}
+
+.task-modal__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.task-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.task-modal__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.theme-dark .task-modal__label {
+  color: #94a3b8;
+}
+
+.task-modal__input,
+.task-modal__textarea,
+.task-modal__select {
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.theme-dark .task-modal__input,
+.theme-dark .task-modal__textarea,
+.theme-dark .task-modal__select {
+  background: #141420;
+  border-color: #2d2d3f;
+  color: #f1f5f9;
+}
+
+.task-modal__input:focus,
+.task-modal__textarea:focus,
+.task-modal__select:focus {
+  border-color: #3525cd;
+  box-shadow: 0 0 0 3px rgba(53, 37, 205, 0.15);
+}
+
+.task-modal__textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.task-modal__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.task-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+}
+
+.theme-dark .task-modal__footer {
+  background: #181826;
+  border-top-color: #2d2d3f;
+}
+
+.task-modal__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.task-modal__btn {
+  padding: 9px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.task-modal__btn--secondary {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.task-modal__btn--secondary:hover {
+  background: #cbd5e1;
+}
+
+.theme-dark .task-modal__btn--secondary {
+  background: #2d2d3f;
+  color: #cbd5e1;
+}
+
+.theme-dark .task-modal__btn--secondary:hover {
+  background: #37374d;
+}
+
+.task-modal__btn--primary {
+  background: #3525cd;
+  color: #ffffff;
+}
+
+.task-modal__btn--primary:hover {
+  background: #291cb0;
+}
+
+.task-modal__btn--danger {
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+}
+
+.task-modal__btn--danger:hover {
+  background: #fee2e2;
+}
+
+.theme-dark .task-modal__btn--danger {
+  border-color: #7f1d1d;
+  color: #f87171;
+}
+
+.theme-dark .task-modal__btn--danger:hover {
+  background: #450a0a;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalScale {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
